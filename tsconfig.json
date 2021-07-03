@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      // 打包目录
+      "outDir": "./dist",
+      // 指的是在ts文件里，我们使用的是es6模块的方式进行引入的
+      "module": "es6",
+      // 打包成es5文件
+      "target": "ES5",
+      // 可以引入js的文件
+      "allowJs": true,
+    }
+  }

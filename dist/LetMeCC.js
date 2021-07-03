@@ -1,0 +1,2 @@
+(()=>{"use strict";var e=new(function(){function e(e){this.greeting=e}return e.prototype.greet=function(){return"Hello,"+this.greeting},e}())("Hansen");alert(e.greet())})();
+//# sourceMappingURL=LetMeCC.js.map
