@@ -13,6 +13,7 @@ class LetMeCC implements LetMeCCInterface {
     _tracks: object;
     _globelData: object;
     constructor () {
+        this._tracks = {};
         this._globelData = new globelData();
     };
     init (name: string, options: object) {
@@ -31,14 +32,14 @@ class LetMeCC implements LetMeCCInterface {
 }
 
 declare global {
-    interface Window { LetMeCC: any; }
+    interface Window { LetMeCC: any; LetMeCCInstance: any }
 }
 
-const LetMeCCInstance = new LetMeCC();
+window.LetMeCCInstance = new LetMeCC();
 
 window.LetMeCC = (functionName, ...args) => {
     try {
-        LetMeCCInstance[functionName](...args);
+        window.LetMeCCInstance[functionName](...args);
     } catch (e) {
         console.log(e);
     }

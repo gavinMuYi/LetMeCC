@@ -15,6 +15,6 @@ export class Tracker implements TrackerInterface {
       this._globelData = globelData;
     };
     track(eventName: string, params: object) {
-
+        console.log(this._globelData);
     }
 }
