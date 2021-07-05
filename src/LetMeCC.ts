@@ -6,20 +6,19 @@ interface LetMeCCInterface {
     _globelData: object;
     init(name: string, options: object): void;
     track(name: string, eventName: string, options: object): void;
-    reset();
+    reset(): void;
 }
 
 class LetMeCC implements LetMeCCInterface {
-    _tracks: object;
-    _globelData: object;
+    _tracks: {};
+    _globelData: {};
     constructor () {
-        this._tracks = {};
         this._globelData = new globelData();
     };
-    init (name: string, options: object) {
+    init (name, options) {
         this._tracks[name] = new Tracker(name, options, this._globelData);
     };
-    track (name: string, eventName: string, params: object) {
+    track (name, eventName, params) {
         if (this._tracks[name]) {
             this._tracks[name].track(eventName, params);
         } else {
@@ -27,7 +26,7 @@ class LetMeCC implements LetMeCCInterface {
         }
     };
     reset () {
-        this._globelData && this._globelData['reset']();
+        this._globelData && this._globelData['init']();
     }
 }
 

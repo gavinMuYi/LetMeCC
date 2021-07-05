@@ -1,14 +1,31 @@
+import uuid from '../utils/uuid';
+
 interface globelDataInterface {
-    reset();
+    init():void;
+    get(): object;
     [propName: string]: any;
 }
 
 export class globelData implements globelDataInterface {
-    [propName: string]: any;
+    $version: '1.0.0';
     constructor() {
-        this._page_init_time = new Date();
+        this.init();
     };
-    reset() {
-        this._page_init_time = new Date();
+    init() {
+        this['$url'] = document.location.href;
+        this['$title'] = document.title;
+        this['$referrer'] = document.referrer;
+        this['$pageInitTime'] = new Date();
+        this['$pageId'] = uuid.create('pid');
+    };
+    get() {
+        return {
+            $version: this['$version'],
+            $url: this['$url'],
+            $title: this['$title'],
+            $referrer: this['$referrer'],
+            $pageInitTime: this['$pageInitTime'],
+            $pageId: this['$pageId']
+        }
     }
 }
