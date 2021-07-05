@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "bulid": "npx webpack"
+    "build": "npx webpack"
   },
   "devDependencies": {
     "ts-loader": "^9.2.3",
