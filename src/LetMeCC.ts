@@ -4,7 +4,7 @@ import { globelData } from './globel/data';
 interface LetMeCCInterface {
     _tracks: object;
     _globelData: object;
-    init(name: string, options: object): void;
+    init(name: string, cipher: string, options: object): void;
     track(name: string, eventName: string, options: object): void;
     reset(): void;
 }
@@ -15,8 +15,8 @@ class LetMeCC implements LetMeCCInterface {
     constructor () {
         this._globelData = new globelData();
     };
-    init (name, options) {
-        this._tracks[name] = new Tracker(name, options, this._globelData);
+    init (name, cipher, options) {
+        this._tracks[name] = new Tracker(name, cipher, options, this._globelData);
     };
     track (name, eventName, params) {
         if (this._tracks[name]) {
