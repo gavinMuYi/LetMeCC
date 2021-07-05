@@ -5,14 +5,16 @@ interface LetMeCCInterface {
     _tracks: object;
     _globelData: object;
     init(name: string, cipher: string, options: object): void;
-    track(name: string, eventName: string, options: object): void;
+    track(name: string, eventName: string, params: object): void;
+    setTrackData(name: string, params: object): void;
     reset(): void;
 }
 
 class LetMeCC implements LetMeCCInterface {
-    _tracks: {};
-    _globelData: {};
+    _tracks: object;
+    _globelData: object;
     constructor () {
+        this._tracks = {};
         this._globelData = new globelData();
     };
     init (name, cipher, options) {
@@ -24,6 +26,9 @@ class LetMeCC implements LetMeCCInterface {
         } else {
             throw new Error(`Tracker ${name} does not exist`);
         }
+    };
+    setTrackData (name, params) {
+        this._tracks[name].set(params);
     };
     reset () {
         this._globelData && this._globelData['init']();
