@@ -5,7 +5,8 @@ interface TrackerInterface {
     _cipher: string;
     _options: object;
     _globelData: object;
-    track(eventName: string, params: object): void;
+    track(eventName: string, params: object, reqType: string): void;
+    systemEvents(): void;
 }
 
 export class Tracker extends TrackerData implements TrackerInterface {
@@ -25,8 +26,9 @@ export class Tracker extends TrackerData implements TrackerInterface {
         this._cipher = cipher;
         this._options = options;
         this._globelData = globelData;
+        this.systemEvents();
     };
-    track(eventName, params) {
+    track(eventName, params, reqType = 'img') {
         const pageData = this._globelData['get']();
         let queryParams = {
             type: 'track',
@@ -35,6 +37,14 @@ export class Tracker extends TrackerData implements TrackerInterface {
             trackerParams: this._trackerData,
             eventParams: params
         }
-        console.log(eventName, queryParams);
-    }
+        console.log(eventName, queryParams, reqType);
+    };
+    systemEvents() {
+        if (!this._options['prevent_pageview']) {
+            this.track('$pageview', {});
+        }
+        if (!this._options['prevent_pageclose']) {
+            this.track('$pageclose', {}, 'beacon');
+        }
+    };
 }

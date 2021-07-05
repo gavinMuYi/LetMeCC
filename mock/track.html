@@ -9,5 +9,10 @@
         </head>
         <body>
             <div>LetMeCC Tracker</div>
+            <script>
+                window.LetMeCC('init','tracker1','key123456',{});
+                window.LetMeCC('setTrackData','tracker1',{a:12});
+                window.LetMeCC('track','tracker1','customerEvent',{b:132});
+            </script>
         </body>
 </html>
