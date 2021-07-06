@@ -1,4 +1,5 @@
 import { TrackerData } from './trackerData';
+import { AutoClickTracker } from '../tools/autoClickTracker';
 
 interface TrackerInterface {
     _name: string;
@@ -45,6 +46,9 @@ export class Tracker extends TrackerData implements TrackerInterface {
         }
         if (!this._options['prevent_pageclose']) {
             this.track('$pageclose', {}, 'beacon');
+        }
+        if (this._options['autoTrack']) {
+            new AutoClickTracker(this._options['autoTrack'], this.track)
         }
     };
 }
