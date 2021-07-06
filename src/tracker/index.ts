@@ -48,7 +48,7 @@ export class Tracker extends TrackerData implements TrackerInterface {
             this.track('$pageclose', {}, 'beacon');
         }
         if (this._options['autoTrack']) {
-            new AutoClickTracker(this._options['autoTrack'], this.track)
+            new AutoClickTracker(this._options['autoTrack'], this.track);
         }
     };
 }
